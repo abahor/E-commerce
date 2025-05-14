@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "Restaurant Food App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Foods",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/food/get-all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "food",
+            "get-all"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add New Food",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Pizza\",\n  \"description\": \"Cheesy pizza\",\n  \"price\": 10.5,\n  \"category\": \"categoryId_here\",\n  \"resturant\": \"resturantId_here\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/food/add-food",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "food",
+            "add-food"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Food",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/food/delete-food/foodId_here",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "food",
+            "delete-food",
+            "foodId_here"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Foods by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/food/category/categoryId_here",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "food",
+            "category",
+            "categoryId_here"
+          ]
+        }
+      }
+    }
+  ]
+}

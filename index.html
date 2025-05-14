@@ -1,0 +1,151 @@
+<!-- <!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    .food-item {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      display: inline-block;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .food-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .food-item h3 {
+      color: #333;
+    }
+    .food-item p {
+      color: #666;
+      font-size: 14px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>قائمة الطعام</h1>
+  <div id="food-list"></div>
+
+  <h2>إضافة طعام</h2>
+  <form id="add-food-form">
+    <input type="text" id="food-name" placeholder="اسم الطعام" required><br>
+    <input type="text" id="food-price" placeholder="السعر" required><br>
+    <input type="text" id="food-category" placeholder="الفئة" required><br>
+    <textarea id="food-description" placeholder="الوصف" required></textarea><br>
+    <input type="text" id="food-image" placeholder="رابط الصورة" required><br>
+    <button type="submit">إضافة طعام</button>
+  </form>
+
+  <script>
+    // عرض الأطعمة
+    function loadFoods() {
+      fetch('http://localhost:5000/api/v1/food')
+        .then(response => response.json())
+        .then(data => {
+          const foodList = document.getElementById('food-list');
+          foodList.innerHTML = data.map(food => `
+            <div class="food-item">
+              <img src="${food.image}" alt="${food.name}">
+              <h3>${food.name}</h3>
+              <p>الفئة: ${food.category}</p>
+              <p>${food.description}</p>
+              <p>${food.price} USD</p>
+              <button onclick="deleteFood('${food._id}')">حذف</button>
+              <button onclick="updateFood('${food._id}')">تحديث</button>
+            </div>
+          `).join('');
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // تحميل الأطعمة عند تحميل الصفحة
+    loadFoods();
+
+    // إضافة طعام
+    const addFoodForm = document.getElementById('add-food-form');
+    addFoodForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const foodData = {
+        name: document.getElementById('food-name').value,
+        price: document.getElementById('food-price').value,
+        category: document.getElementById('food-category').value,
+        description: document.getElementById('food-description').value,
+        image: document.getElementById('food-image').value,
+        available: true,
+      };
+
+      fetch('http://localhost:5000/api/v1/food', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(foodData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Food added:', data);
+          loadFoods(); // تحديث الأطعمة بعد الإضافة
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    // تحديث طعام
+    function updateFood(id) {
+      const updatedFoodData = {
+        name: 'Updated Food Name',
+        price: 9.99,
+        category: 'New Category',
+        description: 'Updated Description',
+        image: 'new-image-url.jpg',
+        available: true,
+      };
+
+      fetch(`http://localhost:5000/api/v1/food/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedFoodData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Food updated:', data);
+          loadFoods(); // تحديث الأطعمة بعد التحديث
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // حذف طعام
+    function deleteFood(id) {
+      fetch(`http://localhost:5000/api/v1/food/${id}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Food deleted:', data);
+          loadFoods(); // تحديث الأطعمة بعد الحذف
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+
+</body>
+</html> -->
